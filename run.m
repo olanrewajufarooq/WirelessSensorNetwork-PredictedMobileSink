@@ -23,6 +23,8 @@ sn = 4; % Number of mobile sink
 sn_method = 'random'; % the mobile sink can be either selected randomly 'random' or evenly spaceed 'even'.
 
 generate_new_model = true; % boolean to decide the generation of new predictive model for the mobile sinks
+train_data = 5
+.; % Number of training rounds where data is to be gathered
 
 rounds = 1000; % Number of rounds per simulation
 k = 8000; % Bits transmitted per packet

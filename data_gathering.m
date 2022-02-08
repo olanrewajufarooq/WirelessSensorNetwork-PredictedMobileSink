@@ -14,7 +14,7 @@ data_count = 0;
 
 while training_count < train_data
     training_count = training_count + 1;
-    fprintf('Training Number: %d \n', training_count);
+    fprintf('Training Data Gathering: %d \n', training_count);
     
     % Initialization of the WSN
     [SN, ms_ids] = createWSN(n, sn, sn_method, dims, ener('init'), rounds, false);
@@ -26,7 +26,7 @@ while training_count < train_data
     for round=1:rounds
 
         % Display the current round
-        if mod(round, 200) == 0
+        if mod(round, 100) == 0
             fprintf('%d \n', round); 
         else
             fprintf('.'); 
