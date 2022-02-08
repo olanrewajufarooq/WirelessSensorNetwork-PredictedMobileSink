@@ -108,5 +108,9 @@ while training_count < train_data
     end
 end
 
+disp("Data GatheringEnded");
+disp("............................................................");
+pause(1)
+
 end
 

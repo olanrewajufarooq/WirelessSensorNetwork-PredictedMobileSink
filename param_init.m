@@ -30,6 +30,7 @@ function [dims,ener] = param_init(max_dim, node_ener, ener_deduc, ener_agg, ener
 
 disp("Parameters Initialization Begins");
 disp("...........")
+pause(1)
 
 %% Function Default Values
 
@@ -82,6 +83,7 @@ ener = containers.Map( {'init', 'tran', 'rec', 'amp', 'agg'}, {node_ener, energy
 
 disp("Parameters Initialization Ends");
 disp("...........")
+pause(1)
 
 end
 
