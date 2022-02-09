@@ -108,7 +108,7 @@ while training_count < train_data
     end
 end
 
-disp("Data GatheringEnded");
+disp("Data Gathering Ended");
 disp("............................................................");
 pause(1)
 
