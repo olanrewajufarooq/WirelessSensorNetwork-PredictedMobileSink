@@ -1,4 +1,4 @@
-function [SN, round_params, sim_params] = simulation_rounds(rounds, SN, dims, ener, k, ms_ids, n_clusters, mob_params)
+function [SN, round_params, sim_params] = simulation_rounds(rounds, SN, dims, ener, k, ms_ids, n_clusters, mob_params, sn_model)
 %SIMULATION_ROUNDS Simulation Function for the Wireless Sensor Network
 %   This function executes the complete simulation of n rounds in a
 %   wireless netowrk and also collating data needed for analytics and
@@ -63,7 +63,7 @@ for round=1:rounds
     [SN] = resetWSN(SN);
     
      % Appoint priority nodes
-    [SN, pn_ids] = priority_nodes_selection(SN);
+    [SN, pn_ids] = priority_nodes_selection(SN, ms_ids, sn_model);
     
     % Perform packet transfer
     [SN, round_params, int_conn_start, int_conn_start_check] = energy_dissipation(SN, round, ms_ids, pn_ids, ener, k, round_params, int_conn_start, int_conn_start_check);

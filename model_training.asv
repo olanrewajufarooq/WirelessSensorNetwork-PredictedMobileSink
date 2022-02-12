@@ -1,4 +1,4 @@
-function model = model_training(data, train_data, n_sinks)
+function [model_x, model_y] = model_training(data, train_data, n_sinks)
 %MODEL_TRAINING Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -8,12 +8,15 @@ pause(1)
 numFeatures = 1;
 numHiddenUnits1 = 256;
 numHiddenUnits2 = 128;
+numHiddenUnits3 = 64;
 numClasses = 1;
 
 layers = [sequenceInputLayer(numFeatures) 
     lstmLayer(numHiddenUnits1,'OutputMode','sequence')
-    dropoutLayer(0.2)
-    lstmLayer(numHiddenUnits2,'OutputMode','last') 
+    dropoutLayer(0.3) 
+    lstmLayer(numHiddenUnits2,'OutputMode','sequence')
+    dropoutLayer(0.25)
+    lstmLayer(numHiddenUnits3,'OutputMode','last') 
     dropoutLayer(0.2)
     fullyConnectedLayer(numClasses) 
     regressionLayer];
@@ -36,12 +39,12 @@ for training_count = 1:train_count_end
     Y = values(2:end)';
     
     if x_train_start
-        model_x = train(model_x, X, Y);
+        model_x = trainNetwork(X, Y, layerGraph(model_x), options);
         fprintf('.');
     else
-        fprintf('Start X-Data Modelling\n.'); 
         model_x = trainNetwork(X, Y, layers, options);
-        x_train_start = true;
+        x_train_start = false;
+        fprintf('Start X-Data Modelling\n.'); 
     end
     
 end
@@ -58,9 +61,9 @@ for training_count = 1:train_data
         model_y = train(model_y, X, Y, layers, options);
         fprintf('.'); 
     else
-        fprintf('Start Y-Data Modelling\n.');
         model_y = trainNetwork(X, Y, layers, options);
-        y_train_start = false; 
+        y_train_start = false;
+        fprintf('Start Y-Data Modelling\n.'); 
     end
     
 end
@@ -70,7 +73,8 @@ fprintf('\nEnd Y-Data Modelling');
 save model_data model_x model_y;
 
 % Model Return
-model = containers.Map({'model_x', 'model_y'}, {model_x, model_y});
+mob_params = containers.Map({'modl', 'max_dist'}, {min_dist, max_dist});
+
 
 fprintf('\nModel Training Ended');
 disp("............................................................");

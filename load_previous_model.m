@@ -1,7 +1,21 @@
-function data = load_previous_model()
+function model = load_previous_model()
 %LOAD_PREVIOUS_MODEL Summary of this function goes here
 %   Detailed explanation goes here
-outputArg1 = inputArg1;
-outputArg2 = inputArg2;
+
+try
+    model_x = load("model_data", "model_x");
+catch
+    error("No pretrained X-coordinate model found")
+end
+
+try
+    model_y = load("model_data", "model_y");
+catch
+    error("No pretrained Y-coordinate model found")
+end
+
+% Model Return
+model = containers.Map({'model_x', 'model_y'}, {model_x, model_y});
+    
 end
 

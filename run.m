@@ -19,11 +19,11 @@ ener_agg = 100e-12; % Aggregation Energy
 % Simulation Parameters
 n = 50; % Number of nodes
 
-sn = 4; % Number of mobile sink
+sn = 1; % Number of mobile sink
 sn_method = 'random'; % the mobile sink can be either selected randomly 'random' or evenly spaceed 'even'.
 
 generate_new_model = true; % boolean to decide the generation of new predictive model for the mobile sinks
-train_data = 2; % Number of training rounds where data is to be gathered
+train_data = 1; % Number of training rounds where data is to be gathered
 past_data_considered = 8; % Number of past data ussed in prediction
 
 rounds = 1000; % Number of rounds per simulation
@@ -50,16 +50,16 @@ if generate_new_model
     data = data_gathering(n, sn, sn_method, dims, ener, n_clusters, rounds, mob_params, train_data);
 
     % Data Munging
-    [sn_model_x, sn_model_y] = model_training(data, past_data_considered, train_data);
+    sn_model = model_training(data, train_data, sn);
 else
-    [sn_model_x, sn_model_y] = load_previous_model();
+    sn_model = load_previous_model();
 end
 
 %% Initialization of the WSN
 [SN, ms_ids] = createWSN(n, sn, sn_method, dims, ener('init'), rounds);
 
 %% Smiluation of the WSN
-[SN, round_params, sim_params] = simulation_rounds(rounds, SN, dims, ener, k, ms_ids, n_clusters, mob_params);
+[SN, round_params, sim_params] = simulation_rounds(rounds, SN, dims, ener, k, ms_ids, n_clusters, mob_params, sn_model);
 
 %% Lifetime and Stability Periods.
 
