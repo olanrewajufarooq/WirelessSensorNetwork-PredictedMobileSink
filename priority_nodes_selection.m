@@ -30,16 +30,14 @@ for cluster = clusters(~isnan(clusters))
     end
         
     for i=1:length(SN.n)
-        if strcmp(SN.n(i).role, 'N') && strcmp(SN.n(i).cond, 'A') && (SN.n(i).cluster == cluster) && (~isnan(cluster))
+        if strcmp(SN.n(i).role, 'N') && strcmp(SN.n(i).cond, 'A') && (SN.n(i).cluster == cluster) && (~isnan(cluster)) && ( (~isempty(new_pos_x)) && (~isempty(new_pos_y)) )
             node_ids(end+1) = SN.n(i).id;
             
             % Compute the distance the node to each mobile sink
             dist_to_ms_mat = sqrt( (new_pos_x - SN.n(i).x).^2 + (new_pos_y - SN.n(i).y).^2 );
+            
             % Selecting the shortest distance
-            dist = min(dist_to_ms_mat(:));
-            
-            min_dists(end+1) = dist;
-            
+            min_dists(end+1) = min(dist_to_ms_mat(:));
         end 
     end
     

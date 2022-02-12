@@ -18,7 +18,7 @@ layers = [sequenceInputLayer(numFeatures)
     fullyConnectedLayer(numClasses) 
     regressionLayer];
 
-maxEpochs = ceil(50/(train_data*n_sinks));
+maxEpochs = ceil(150/(train_data*n_sinks));
 miniBatchSize = 32;
 
 options = trainingOptions('adam', 'MaxEpochs',maxEpochs, 'MiniBatchSize', ...
@@ -36,7 +36,7 @@ for training_count = 1:train_count_end
     Y = values(2:end)';
     
     if x_train_start
-        model_x = train(model_x, X, Y);
+        model_x = trainNetwork(X, Y, model_x.Layers, options);
         fprintf('.');
     else
         fprintf('Start X-Data Modelling\n.'); 
@@ -55,12 +55,12 @@ for training_count = 1:train_data
     Y = values(2:end)';
     
     if y_train_start
-        model_y = train(model_y, X, Y, layers, options);
+        model_y = trainNetwork(X, Y, model_y.Layers, options);
         fprintf('.'); 
     else
         fprintf('Start Y-Data Modelling\n.');
         model_y = trainNetwork(X, Y, layers, options);
-        y_train_start = false; 
+        y_train_start = true; 
     end
     
 end

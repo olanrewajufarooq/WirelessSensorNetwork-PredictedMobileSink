@@ -61,8 +61,8 @@ for i=1:nodes
     SN.n(i).size = 20; % marker size when plotting
     SN.n(i).alpha = (4/25)*(2.5^4).^(SN.n(i).E); % the opacity when plotting
     
-    SN.n(i).Xs = zeros(1, rounds); % All positional values through the simulation
-    SN.n(i).Ys = zeros(1, rounds); % All positional values through the simulation
+    SN.n(i).Xs = []; % All positional values through the simulation
+    SN.n(i).Ys = []; % All positional values through the simulation
     SN.n(i).ALPHAs = zeros(1, rounds); % All corresponding energy values through the simulation
     
 end
