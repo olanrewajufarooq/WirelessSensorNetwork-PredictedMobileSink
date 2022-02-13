@@ -18,7 +18,8 @@ layers = [sequenceInputLayer(numFeatures)
     fullyConnectedLayer(numClasses) 
     regressionLayer];
 
-maxEpochs = ceil(150/(train_data*n_sinks));
+%maxEpochs = ceil(150/(train_data*n_sinks));
+maxEpochs = 150;
 miniBatchSize = 32;
 
 options = trainingOptions('adam', 'MaxEpochs',maxEpochs, 'MiniBatchSize', ...
@@ -29,7 +30,9 @@ options = trainingOptions('adam', 'MaxEpochs',maxEpochs, 'MiniBatchSize', ...
 
 % Training for the Mobile Sink X-Data
 x_train_start = false;
-train_count_end = train_data * n_sinks;
+%train_count_end = train_data * n_sinks;
+train_count_end = 1;
+
 for training_count = 1:train_count_end
     values = data(training_count).X;
     X = num2cell(values(1:end-1)');
@@ -49,7 +52,7 @@ fprintf('\nEnd X-Data Modelling');
 
 % Training for the Mobile Sink Y-Data
 y_train_start = false;
-for training_count = 1:train_data
+for training_count = 1:train_count_end
     values = data(training_count).Y;
     X = num2cell(values(1:end-1)');
     Y = values(2:end)';

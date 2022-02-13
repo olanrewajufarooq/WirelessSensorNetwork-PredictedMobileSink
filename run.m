@@ -17,16 +17,16 @@ ener_amp = 100e-12; % Amplification Energy
 ener_agg = 100e-12; % Aggregation Energy
 
 % Simulation Parameters
-n = 50; % Number of nodes
+n = 100; % Number of nodes
 
 sn = 3; % Number of mobile sink
 sn_method = 'random'; % the mobile sink can be either selected randomly 'random' or evenly spaceed 'even'.
 
 generate_new_model = true; % boolean to decide the generation of new predictive model for the mobile sinks
-train_data = 5; % Number of training rounds where data is to be gathered
+train_data = 1; % Number of training rounds where data is to be gathered
 past_data_considered = 8; % Number of past data ussed in prediction
 
-rounds = 200; % Number of rounds per simulation
+rounds = 1000; % Number of rounds per simulation
 k = 8000; % Bits transmitted per packet
 
 % Clustering Paramters
