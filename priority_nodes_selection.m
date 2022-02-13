@@ -22,7 +22,7 @@ for cluster = clusters(~isnan(clusters))
         count = count + 1;
         
         X = SN.n(ms_id).Xs;
-        Y = SN.n(ms_id).Xs;
+        Y = SN.n(ms_id).Ys;
         if (~isempty(X)) && (~isempty(Y))
             new_pos_x(end+1) = predict(model_x, X);
             new_pos_y(end+1) = predict(model_y, Y);
