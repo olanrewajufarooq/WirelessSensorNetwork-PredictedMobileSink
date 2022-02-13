@@ -1,6 +1,7 @@
 close all;
 clc;
 clear;
+parpool;
 
 %% Simulation Details
 disp("Welcome to Wireless Sensor Simulation");
@@ -68,6 +69,8 @@ fprintf('Stability Period: %d secs\n', round(round_params('stability period'), 2
 fprintf('Stability Period Round: %d\n', round_params('stability period round'))
 fprintf('Lifetime: %d secs\n', round(round_params('lifetime'), 2))
 fprintf('Lifetime Round: %d\n', round_params('lifetime round'))
+
+delete(parpool);
 
 %% Data Visualisation
 plot_data(rounds, sim_params)
