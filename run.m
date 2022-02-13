@@ -1,7 +1,6 @@
 close all;
 clc;
 clear;
-parpool;
 
 %% Simulation Details
 disp("Welcome to Wireless Sensor Simulation");
@@ -23,7 +22,7 @@ n = 100; % Number of nodes
 sn = 3; % Number of mobile sink
 sn_method = 'random'; % the mobile sink can be either selected randomly 'random' or evenly spaceed 'even'.
 
-generate_new_model = true; % boolean to decide the generation of new predictive model for the mobile sinks
+generate_new_model = false; % boolean to decide the generation of new predictive model for the mobile sinks
 train_data = 1; % Number of training rounds where data is to be gathered
 past_data_considered = 8; % Number of past data ussed in prediction
 
@@ -69,8 +68,6 @@ fprintf('Stability Period: %d secs\n', round(round_params('stability period'), 2
 fprintf('Stability Period Round: %d\n', round_params('stability period round'))
 fprintf('Lifetime: %d secs\n', round(round_params('lifetime'), 2))
 fprintf('Lifetime Round: %d\n', round_params('lifetime round'))
-
-delete(parpool);
 
 %% Data Visualisation
 plot_data(rounds, sim_params)
