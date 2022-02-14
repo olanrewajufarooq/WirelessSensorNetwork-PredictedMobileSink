@@ -27,7 +27,7 @@ train_data = 1; % Number of training rounds where data is to be gathered
 past_data_considered = 10; % Number of past data ussed in prediction
 
 rounds = 1000; % Number of rounds per simulation
-k = 800; % Bits transmitted per packet
+k = 8000; % Bits transmitted per packet
 
 % Clustering Paramters
 n_clusters = 5;
