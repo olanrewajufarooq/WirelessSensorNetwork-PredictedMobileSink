@@ -4,12 +4,14 @@ function model = load_previous_model()
 
 try
     model_x = load("model_data", "model_x");
+    model_x = model_x.model_x;
 catch
     error("No pretrained X-coordinate model found")
 end
 
 try
     model_y = load("model_data", "model_y");
+    model_y = model_y.model_y;
 catch
     error("No pretrained Y-coordinate model found")
 end

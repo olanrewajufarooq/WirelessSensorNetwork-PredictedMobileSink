@@ -24,6 +24,10 @@ for cluster = clusters(~isnan(clusters))
         X = SN.n(ms_id).Xs;
         Y = SN.n(ms_id).Ys;
         if (~isempty(X)) && (~isempty(Y))
+            if length(X) > 50 && length(Y) > 50
+                X = X(end-50:end);
+                Y = Y(end-50:end);
+            end
             new_pos_x(end+1) = predict(model_x, X);
             new_pos_y(end+1) = predict(model_y, Y);
         end
