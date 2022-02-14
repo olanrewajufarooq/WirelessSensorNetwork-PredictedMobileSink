@@ -24,7 +24,7 @@ sn_method = 'random'; % the mobile sink can be either selected randomly 'random'
 
 generate_new_model = false; % boolean to decide the generation of new predictive model for the mobile sinks
 train_data = 1; % Number of training rounds where data is to be gathered
-past_data_considered = 8; % Number of past data ussed in prediction
+past_data_considered = 10; % Number of past data ussed in prediction
 
 rounds = 1000; % Number of rounds per simulation
 k = 8000; % Bits transmitted per packet
@@ -59,7 +59,7 @@ end
 [SN, ms_ids] = createWSN(n, sn, sn_method, dims, ener('init'), rounds);
 
 %% Smiluation of the WSN
-[SN, round_params, sim_params] = simulation_rounds(rounds, SN, dims, ener, k, ms_ids, n_clusters, mob_params, sn_model);
+[SN, round_params, sim_params] = simulation_rounds(rounds, SN, dims, ener, k, ms_ids, n_clusters, mob_params, sn_model, past_data_considered);
 
 %% Lifetime and Stability Periods.
 

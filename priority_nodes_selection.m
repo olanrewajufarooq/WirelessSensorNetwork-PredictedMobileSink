@@ -1,4 +1,4 @@
-function [SN,  pn_ids] = priority_nodes_selection(SN, ms_ids, model)
+function [SN,  pn_ids] = priority_nodes_selection(SN, ms_ids, model, past_data_considered)
 %PRIORITY_NODES_SELECTION Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -24,9 +24,9 @@ for cluster = clusters(~isnan(clusters))
         X = SN.n(ms_id).Xs;
         Y = SN.n(ms_id).Ys;
         if (~isempty(X)) && (~isempty(Y))
-            if length(X) > 50 && length(Y) > 50
-                X = X(end-50:end);
-                Y = Y(end-50:end);
+            if length(X) > past_data_considered && length(Y) > past_data_considered
+                X = X(end-past_data_considered:end);
+                Y = Y(end-past_data_considered:end);
             end
             new_pos_x(end+1) = predict(model_x, X);
             new_pos_y(end+1) = predict(model_y, Y);
